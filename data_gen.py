@@ -9,7 +9,7 @@ import numpy as np
 
 record = None
 server_num, client_num, time_len = 0, 0, 0
-pressure = 0.8
+pressure = 0.6
 qos_lim = 0
 qos = None
 dist_matrix = None
@@ -25,7 +25,7 @@ def read_input():
     server_num = ask('input server number (default 100):', 100)
     client_num = ask('input client number (default 10):', 10)
     time_len = ask('input time length (default 100):', 100)
-    inp = input('input pressure 0.01-0.99 (default 0.8):')
+    inp = input('input pressure 0.01-0.99 (default 0.6):')
     if inp.strip():
         pressure = float(inp.strip())
 
@@ -62,8 +62,8 @@ def output(path: str):
     cname = gen_client_name(client_num)
     with open(os.path.join(path, 'demand.csv'), 'w') as f:
         f.write('mtime,' + ','.join(cname) + '\n')
-        time_str = curr_time.strftime("%Y-%m-%dT%H:%M")
         for t_idx in range(time_len):
+            time_str = curr_time.strftime("%Y-%m-%dT%H:%M")
             c_demand = record[t_idx].sum(axis=0)
             c_demand = [ str(i) for i in c_demand ]
             f.write(time_str + ',' + ','.join(c_demand) + '\n')
