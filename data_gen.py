@@ -46,14 +46,18 @@ def gen_client_name(n: int):
     out = [ reduce(lambda x, y: x+y, each) for each in out ]
     out += [ i for i in alphabet ]
     shuffle(out)
-    return out[:n]
+    out = out[:n]
+    out.sort()
+    return out
 
 def gen_server_name(n: int):
     cand = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789'
     out = list(combinations(cand, 2))
     out = [ reduce(lambda x, y: x+y, each) for each in out ]
     shuffle(out)
-    return out[:n]
+    out = out[:n]
+    out.sort()
+    return out
 
 def output(path: str):
     curr_time = datetime.datetime(2021, 11, 1, 0, 0)
