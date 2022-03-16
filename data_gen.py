@@ -2,6 +2,7 @@ import datetime
 import os
 from itertools import combinations
 from functools import reduce
+import sys
 from random import shuffle
 import numpy as np
 
@@ -24,7 +25,7 @@ def read_input():
     server_num = ask('input server number (default 100):', 100)
     client_num = ask('input client number (default 10):', 10)
     time_len = ask('input time length (default 100):', 100)
-    inp = input('input pressure 0.01-0.99 (default 0.8)')
+    inp = input('input pressure 0.01-0.99 (default 0.8):')
     if inp.strip():
         pressure = float(inp.strip())
 
@@ -89,5 +90,10 @@ if __name__ == '__main__':
     read_input()
     record = np.zeros((time_len, server_num, client_num), dtype=np.int32)
     distribute_server()
-    output('pressure_data')
+    if len(sys.argv) == 1:
+        output('pressure_data')
+    else:
+        try: os.mkdir(sys.argv[1])
+        except: pass
+        output(sys.argv[1])
     
