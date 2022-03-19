@@ -12,6 +12,9 @@ All data will generated at path "data_path".  `data_path` is optional, if not sp
 Attached a pressure=0.6 data.
 附赠了个压力0.6的数据。  
 
+If you can pass the test, but can not pass the online test, then it would be the problem of your program, you can try to generate pressure test data, then use the data that can not pass to debug.  
+如果你可以通过判题器的测试，但却无法通过线上测试，那么你可以尝试着使用压测程序生成数据，使用无法通过测试的数据进行debug。  
+
 ## benchmark 判题器  
 benchmark is avail at [here](https://github.com/diphosphane/CodeCraft2022-benchmark).  
 判题器可在[这](https://github.com/diphosphane/CodeCraft2022-benchmark)下载到。  
