@@ -35,7 +35,7 @@ def distribute_server():
     qos = np.ceil(np.random.normal(qos_lim, 50, size=(server_num, client_num))).astype('int32')
     mask = np.random.randn()
     for t_idx in range(time_len):
-        dis_bd = np.random.randint(500, 300000, size=(server_num, client_num))
+        dis_bd = np.random.randint(500, 300000, size=(server_num, client_num)) * (qos < qos_lim)
         mask = np.random.randn(server_num, client_num) > 0.35
         dis_bd = dis_bd * mask
         record[t_idx] = dis_bd

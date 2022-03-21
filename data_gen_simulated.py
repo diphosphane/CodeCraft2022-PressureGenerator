@@ -33,11 +33,11 @@ def read_input():
 def distribute_server():
     global record, qos_lim, qos
     qos_lim = np.random.randint(150, 300)
-    offset = np.random.randint(30, 100)
+    offset = np.random.randint(10, 50)
     qos = np.ceil(np.random.normal(qos_lim+offset, 50, size=(server_num, client_num))).astype('int32')
     mask = np.random.randn()
     for t_idx in range(time_len):
-        dis_bd = np.random.randint(0, math.ceil(550000 / client_num / 37), size=(server_num, client_num))
+        dis_bd = np.random.randint(0, math.ceil(550000 / client_num / 37), size=(server_num, client_num)) * (qos < qos_lim)
         mask = np.abs(np.random.randn(server_num, client_num)) > 0.27
         dis_bd = dis_bd * mask
         record[t_idx] = dis_bd
