@@ -66,7 +66,7 @@ def output(path: str):
     time_sep = datetime.timedelta(minutes=5)
     sname = gen_server_name(server_num)
     cname = gen_client_name(client_num)
-    with open(os.path.join(path, 'demand.csv'), 'w') as f:
+    with open(os.path.join(path, 'demand.csv'), 'w', newline='') as f:
         f.write('mtime,' + ','.join(cname) + '\r\n')
         for t_idx in range(time_len):
             time_str = curr_time.strftime("%Y-%m-%dT%H:%M")
@@ -77,13 +77,13 @@ def output(path: str):
             c_demand = [ str(i) for i in c_demand ]
             f.write(time_str + ',' + ','.join(c_demand) + '\r\n')
             curr_time += time_sep
-    with open(os.path.join(path, 'site_bandwidth.csv'), 'w') as f:
+    with open(os.path.join(path, 'site_bandwidth.csv'), 'w', newline='') as f:
         f.write('site_name,bandwidth\r\n')
         for s_idx in range(server_num):
             bd_used = record.sum(axis=-1)[:, s_idx].max()
             bd_upper = np.ceil(bd_used / pressure).astype('int32')
             f.write(f'{sname[s_idx]},{bd_upper}\r\n')
-    with open(os.path.join(path, 'qos.csv'), 'w') as f:
+    with open(os.path.join(path, 'qos.csv'), 'w', newline='') as f:
         f.write('site_name,' + ','.join(cname) + '\r\n')
         for s_idx in range(server_num):
             s = sname[s_idx]
@@ -91,7 +91,7 @@ def output(path: str):
             qos_list = [ str(i) for i in qos_list ]
             qos_str = ','.join(qos_list)
             f.write(f'{s},{qos_str}\r\n')
-    with open(os.path.join(path, 'config.ini'), 'w') as f:
+    with open(os.path.join(path, 'config.ini'), 'w', newline='') as f:
         f.write('[config]\r\n')
         f.write(f'qos_constraint={qos_lim}\r\n')
 
