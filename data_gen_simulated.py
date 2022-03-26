@@ -100,7 +100,10 @@ if __name__ == '__main__':
     record = np.zeros((time_len, server_num, client_num), dtype=np.int32)
     distribute_server()
     if len(sys.argv) == 1:
-        output('simulated_data')
+        path = 'pressure_data'
+        if not os.path.exists(path):
+            os.mkdir(path)
+        output(path)
     else:
         try: os.mkdir(sys.argv[1])
         except: pass
